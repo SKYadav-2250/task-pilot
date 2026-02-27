@@ -20,7 +20,9 @@ class TaskModel extends Equatable {
       id: json['_id'] as String? ?? json['id'] as String? ?? '',
       title: json['title'] as String? ?? '',
       description: json['description'] as String? ?? '',
-      status: json['completed'] == true ? 'Completed' : 'Pending',
+      status:
+          json['status'] as String? ??
+          (json['completed'] == true ? 'Completed' : 'Pending'),
       dueDate: json['dueDate'] != null
           ? DateTime.parse(json['dueDate'] as String)
           : DateTime.now(),
@@ -31,7 +33,7 @@ class TaskModel extends Equatable {
     return {
       'title': title,
       'description': description,
-      'completed': status == 'Completed',
+      'status': status,
       'dueDate': dueDate.toIso8601String(),
     };
   }
