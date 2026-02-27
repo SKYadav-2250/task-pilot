@@ -4,6 +4,7 @@ import 'package:task_mang/core/services/storage_service.dart';
 import 'package:task_mang/injection_container.dart' as di;
 import 'package:task_mang/logic/bloc/auth/auth_bloc.dart';
 import 'package:task_mang/logic/bloc/auth/auth_event.dart';
+import 'package:task_mang/presentation/screens/auth/login_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -122,7 +123,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                   onPressed: () {
                     context.read<AuthBloc>().add(AuthLogoutRequested());
-                    Navigator.pop(context);
+
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const LoginScreen(),
+                      ),
+                    );
                   },
                 ),
               ),

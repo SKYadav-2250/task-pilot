@@ -91,7 +91,9 @@ class AuthRepository {
   }
 
   Future<void> logout() async {
+  
     await storageService.clearUserData();
+
   }
 
   Future<bool> isAuthenticated() async {

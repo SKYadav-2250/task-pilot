@@ -37,7 +37,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     log('result for the bloc result ${result.toString()}');
     result.fold(
       (failure) => emit(AuthError(failure.message)),
-      
+
       (token) => emit(Authenticated(token)),
     );
   }
@@ -63,6 +63,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     Emitter<AuthState> emit,
   ) async {
     emit(AuthLoading());
+    log('result for the bloc result ');
     await authRepository.logout();
     emit(Unauthenticated());
   }

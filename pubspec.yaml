@@ -44,6 +44,7 @@ dependencies:
   dartz: ^0.10.1
   uuid: ^4.5.3
   flutter_dotenv: ^6.0.0
+  flutter_launcher_icons: ^0.14.4
 
 dev_dependencies:
   flutter_test:
@@ -97,3 +98,11 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+
+  assets:
+    - assets/image/
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/image/image.png"

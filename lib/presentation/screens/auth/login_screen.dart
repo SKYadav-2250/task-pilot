@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:task_mang/logic/bloc/auth/auth_bloc.dart';
@@ -48,22 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       // Ensure the background is clean
       backgroundColor: theme.scaffoldBackgroundColor,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 8.0),
-            child: IconButton(
-              onPressed: () => context.read<ThemeCubit>().toggleTheme(),
-              icon: Icon(
-                isDark ? Icons.light_mode_rounded : Icons.dark_mode_rounded,
-                color: isDark ? Colors.orangeAccent : Colors.indigo,
-              ),
-            ),
-          ),
-        ],
-      ),
+
       body: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {
           if (state is AuthError) {
@@ -200,7 +187,12 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                               onPressed: state is AuthLoading ? null : _login,
                               child: state is AuthLoading
-                                  ? const CircularProgressIndicator(
+                                  ? CircularProgressIndicator(
+                                      strokeWidth: 3,
+                                      constraints: BoxConstraints.tight(
+                                        Size(25, 25),
+                                      ),
+
                                       color: Colors.white,
                                     )
                                   : const Text(
